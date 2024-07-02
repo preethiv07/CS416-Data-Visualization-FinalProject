@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", async function() {
           .attr("y", -15)
           .attr("width", 20)
           .attr("height", 20)
-          .attr("fill", dataType === "Non-Domestic" ? "#003366" : "rgb(48, 183, 183)");
+          .attr("fill", dataType === "Non-Domestic" ? "#003366" : "rgb(10, 126, 124)");
   
       legendGroup.append("text")
           .attr("x", -90)

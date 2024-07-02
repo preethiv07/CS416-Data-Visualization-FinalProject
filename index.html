@@ -13,21 +13,23 @@
         <!-- Page 1 -->
         <div id="page1" class="page active">
             <img src="images/Chicago4.jpg" alt="Chicago" class="header-image">
-            <h1 class="title">Chicago Crime Analysis Dashboard</h1>
-            <p class="created-by">Created by Preethi Venkatesan for Data Visualization Final Project</p>
-
+            <h1 class="title">Chicago Crime Trends</h1>
+            <p class="created-by">By Preethi Venkatesan</p>
+            <hr>
             <!-- Links section -->
             <div class="links-section">
                 <h3>Messaging</h3>
                 <p>Through data exploration, communicate Chicago's crime trends breakdown by domestic vs. non-domestic incidents and most prevalent crime types.</p>
                 <h3>Dataset</h3>
-                <p>Includes Chicago crime incidents of past year obtained from Chicago Police Department's CLEAR (Citizen Law Enforcement Analysis and Reporting) system.</p>
+                <p>Chicago crime incidents of past year obtained from Chicago Police Department's CLEAR (Citizen Law Enforcement Analysis and Reporting) system.</p>
                 <p>
-                  <a href="https://catalog.data.gov/dataset/crimes-one-year-prior-to-present" target="_blank">Learn more about the Dataset</a>
+                  <a href="https://catalog.data.gov/dataset/crimes-one-year-prior-to-present" target="_blank">Learn more about the Dataset</a>  |
+                  <a href="https://github.com/preethiv07/CS416-Data-Visualization-FinalProject/tree/main/data" target="_blank">Processed dataset</a> |
+                  <a href="https://data.cityofchicago.org/api/views/x2n5-8w5q/rows.csv?accessType=DOWNLOAD" target="_blank">Download Original dataset </a> 
+                 
                 </p>
-                <p>
-                    <a href="https://data.cityofchicago.org/api/views/x2n5-8w5q/rows.csv?accessType=DOWNLOAD" target="_blank">Download dataset here</a>
-                </p>
+                
+                
             </div>
             
             <hr>
@@ -38,6 +40,7 @@
         <div id="page2" class="page">
             <h2>About the Visualization</h2>
             <div class="about-section">
+                <hr>
                 <ul>
                     <li><strong>Narrative Structure:</strong> Martini glass - where the message is delivered without allowing user exploration until the end</li>
                     <li><strong>Scenes:</strong> In development</li>
@@ -50,24 +53,31 @@
                 <hr>
             </div>
             <div class="navigation-arrows">
-                <div id="nextArrowPage2" class="next-arrow">Lets begin exploring &#x27A1;</div>
+                <div id="nextArrowPage2" class="next-arrow">Lets begin   &#x27A1;</div>
             </div>
         </div>
 
         <!-- Page 3 -->
         <div id="page3" class="page">
-            <h1>Non-Domestic Crimes</h1>
+            <h2>Non-Domestic Crimes Decline in Late 2023, Rise in Early 2024</h2>
+            <p class="white-text"> From August 2023 to the end of the year, non-domestic crimes saw a significant reduction. However, the first quarter of 2024 is witnessing an uptick in such crimes.
+               </p>
+            <hr>
             <div id="chart3"></div>
-            <button id="nextArrowPage3">Next</button>
+            <div id="nextArrowPage3" class="next-arrow">How about Domestic crimes? &#x27A1;</div>
         </div>
 
         <!-- Page 4 -->
         <div id="page4" class="page">
-            <h1>Domestic Crimes</h1>
+            <h2>Domestic Crimes Drop in November 2023, Stabilize Thereafter</h2>
+            <p class="white-text"> After a peak in July 2023, domestic crimes dropped in November 2023 and have since plateaued with no further increases.
+            </p>
+            <hr>
             <div id="chart4"></div>
-            <button id="prevArrowPage4">Back</button>
+            <div class="navigation-arrows">
+                <div id="prevArrowPage4" class="prev-arrow">&#x2B05; Back</div>
+            </div>
         </div>
-    </div>
     
     <script src="script.js"></script>
 </body>
