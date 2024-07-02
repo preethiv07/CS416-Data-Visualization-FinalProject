@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicago Crime Analysis Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-annotation@4.0.0/dist/d3-annotation.min.js"></script>
+</head>
+<body>
+    <div id="container">
+        <!-- Page 1 -->
+        <div id="page1" class="page active">
+            <img src="images/Chicago4.jpg" alt="Chicago" class="header-image">
+            <h1 class="title">Chicago Crime Analysis Dashboard</h1>
+            <p class="created-by">Created by Preethi Venkatesan for Data Visualization Final Project</p>
+
+            <!-- Links section -->
+            <div class="links-section">
+                <h3>Messaging</h3>
+                <p>Through data exploration, communicate Chicago's crime trends breakdown by domestic vs. non-domestic incidents and most prevalent crime types.</p>
+                <h3>Dataset</h3>
+                <p>Includes Chicago crime incidents of past year obtained from Chicago Police Department's CLEAR (Citizen Law Enforcement Analysis and Reporting) system.</p>
+                <p>
+                  <a href="https://catalog.data.gov/dataset/crimes-one-year-prior-to-present" target="_blank">Learn more about the Dataset</a>
+                </p>
+                <p>
+                    <a href="https://data.cityofchicago.org/api/views/x2n5-8w5q/rows.csv?accessType=DOWNLOAD" target="_blank">Download dataset here</a>
+                </p>
+            </div>
+            
+            <hr>
+            <div id="nextArrowPage1" class="next-arrow">About the Visualization &#x27A1;</div>
+        </div>
+        
+        <!-- Page 2 -->
+        <div id="page2" class="page">
+            <h2>About the Visualization</h2>
+            <div class="about-section">
+                <ul>
+                    <li><strong>Narrative Structure:</strong> Martini glass - where the message is delivered without allowing user exploration until the end</li>
+                    <li><strong>Scenes:</strong> In development</li>
+                    <li><strong>Annotations:</strong> In development</li>
+                    <li><strong>Parameters:</strong> In development</li>
+                    <li><strong>Triggers:</strong> In development</li>
+                    <li><strong>Messaging:</strong> In development</li>
+                    <li><strong>Transition:</strong> In development</li>
+                </ul>
+                <hr>
+            </div>
+            <div class="navigation-arrows">
+                <div id="nextArrowPage2" class="next-arrow">Lets begin exploring &#x27A1;</div>
+            </div>
+        </div>
+
+        <!-- Page 3 -->
+        <div id="page3" class="page">
+            <h2>Trends by Domestic and Non-Domestic Incidents</h2>
+            <hr>
+            <div class="chart-description">
+                <p class="chart-description-text">
+                    The Line chart to show trend of crime incidents for the last one year until 7 days before End of June indicates that Non-domestic incidents contribute to the overall crime.
+                </p>
+            </div>
+            <div id="chart"></div> <!-- Container for the D3 chart -->
+            <hr>
+            <div class="navigation-arrows">
+                <div id="prevArrowPage3" class="prev-arrow">&#x2B05; Previous</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
