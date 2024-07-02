@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chicago Crime Analysis Dashboard</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-annotation@4.0.0/dist/d3-annotation.min.js"></script>
 </head>
 <body>
@@ -33,7 +33,7 @@
             <hr>
             <div id="nextArrowPage1" class="next-arrow">About the Visualization &#x27A1;</div>
         </div>
-        
+
         <!-- Page 2 -->
         <div id="page2" class="page">
             <h2>About the Visualization</h2>
@@ -56,21 +56,19 @@
 
         <!-- Page 3 -->
         <div id="page3" class="page">
-            <h2>Trends by Domestic and Non-Domestic Incidents</h2>
-            <hr>
-            <div class="chart-description">
-                <p class="chart-description-text">
-                    The Line chart to show trend of crime incidents for the last one year until 7 days before End of June indicates that Non-domestic incidents contribute to the overall crime.
-                </p>
-            </div>
-            <div id="chart"></div> <!-- Container for the D3 chart -->
-            <hr>
-            <div class="navigation-arrows">
-                <div id="prevArrowPage3" class="prev-arrow">&#x2B05; Previous</div>
-            </div>
+            <h1>Non-Domestic Crimes</h1>
+            <div id="chart3"></div>
+            <button id="nextArrowPage3">Next</button>
+        </div>
+
+        <!-- Page 4 -->
+        <div id="page4" class="page">
+            <h1>Domestic Crimes</h1>
+            <div id="chart4"></div>
+            <button id="prevArrowPage4">Back</button>
         </div>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
