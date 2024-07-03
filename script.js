@@ -132,10 +132,10 @@ const lineDomesticArrestPerc = d3.line()
           // Add rectangle and annotation after animation completes
           if (dataType === "Non-Domestic") {
             addRectangle(svg, parseDate("20240101"), parseDate("20240331"), height, x, "Non-Domestic");
-            addAnnotation(svg, parseDate("202401"), "Increased non-domestic crimes in Q1 2024", x, y, "Non-Domestic");
+            addAnnotation(svg, parseDate("202401"), "Increased non-domestic crimes in 2024", x, y, "Non-Domestic");
           } else if (dataType === "Domestic") {
             addRectangle(svg, parseDate("20230111"), parseDate("20240131"), height, x, "Domestic");
-            addAnnotation(svg, parseDate("202311"), "Domestic crimes low in Nov 2023", x, y, "Domestic");
+            addAnnotation(svg, parseDate("202311"), "Upward trend after the low point", x, y, "Domestic");
           }
         });
   
@@ -177,7 +177,7 @@ const lineDomesticArrestPerc = d3.line()
       const yValue = y(annotationData[dataType]);
   
       svg.append("text")
-          .attr("x", xValue + (dataType === "Non-Domestic" ? 80 : 50))
+          .attr("x", xValue + (dataType === "Non-Domestic" ? 200 : 400))
           .attr("y", yValue + (dataType === "Non-Domestic" ? 70 : 60))
           .attr("dy", -10) // Adjust as needed
           .attr("text-anchor", "middle")
@@ -190,10 +190,10 @@ const lineDomesticArrestPerc = d3.line()
       const xEnd = x(endDate);
   
       svg.append("rect")
-          .attr("x", dataType === "Non-Domestic" ? 450 : 290)
-          .attr("y", dataType === "Non-Domestic" ? -10 : 60)
-          .attr("width", dataType === "Non-Domestic" ? 220 : 60)
-          .attr("height", 40)
+          .attr("x", dataType === "Non-Domestic" ? 600 : 600)
+          .attr("y", dataType === "Non-Domestic" ? 30 : 10)
+          .attr("width", dataType === "Non-Domestic" ? 300 : 300)
+          .attr("height", dataType === "Non-Domestic" ? 60 : 90)
           .attr("fill", "none")
           .attr("stroke", "red")
           .attr("stroke-width", 2)
