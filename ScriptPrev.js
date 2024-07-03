@@ -3,10 +3,14 @@ document.addEventListener("DOMContentLoaded", async function() {
   const page2 = document.getElementById("page2");
   const page3 = document.getElementById("page3");
   const page4 = document.getElementById("page4");
+  const page5 = document.getElementById("page5");
   const nextArrowPage1 = document.getElementById("nextArrowPage1");
   const nextArrowPage2 = document.getElementById("nextArrowPage2");
   const nextArrowPage3 = document.getElementById("nextArrowPage3");
   const prevArrowPage4 = document.getElementById("prevArrowPage4");
+  const nextArrowPage4 = document.getElementById("nextArrowPage4");
+  const prevArrowPage5 = document.getElementById("prevArrowPage5");
+
 
   nextArrowPage1.addEventListener("click", () => {
     page1.classList.remove("active");
@@ -31,37 +35,67 @@ document.addEventListener("DOMContentLoaded", async function() {
     renderChart("Non-Domestic", "#chart3", "line-non-domestic"); // Re-render Page 3 chart
   });
 
-  const data = await d3.csv("data/TrendsbyDomestic.csv");
-
-  // Parse the data
-  const parseDate = d3.timeParse("%Y%m");
-  data.forEach(d => {
-    d.Occured = parseDate(d.Occured);
-    d["Non-Domestic"] = +d["Non-Domestic"];
-    d["Domestic"] = +d["Domestic"];
+  nextArrowPage4.addEventListener("click", () => {
+      page4.classList.remove("active");
+      page5.classList.add("active");
+      renderDualLineChart("#chart5");
   });
 
+  prevArrowPage5.addEventListener("click", () => {
+      page5.classList.remove("active");
+      page4.classList.add("active");
+      renderChart("Domestic", "#chart4", "line-domestic");
+  });
+
+  const data = await d3.csv("data/TrendsbyDomestic1.csv");
+
+
+
+ // Parse the data
+ const parseDate = d3.timeParse("%Y%m");
+ data.forEach(d => {
+     d.Occured = parseDate(d.Occured);
+     d["Non-Domestic"] = +d["Non-Domestic"];
+     d["Domestic"] = +d["Domestic"];
+     d["Non-DomesticArrest"] = +d["Non-DomesticArrest"];
+     d["DomesticArrest"] = +d["DomesticArrest"];
+     d["Non-DomesticArrestPerc"] = parseFloat(d["Non-DomesticArrestPerc"]) ;
+     d["DomesticArrestPerc"] = parseFloat(d["DomesticArrestPerc"]) ;
+ });
+
+ console.log("Data loaded:", data);
+
   // Set the dimensions and margins of the graph
-  const margin = {top: 20, right: 20, bottom: 60, left: 50},
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+  const margin = { top: 20, right: 20, bottom: 60, left: 50 },
+      width = 960 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
 
   // Set the ranges
   const x = d3.scaleTime().range([0, width]);
   const y = d3.scaleLinear().range([height, 0]);
 
-  // Define the line functions
-  const lineNonDomestic = d3.line()
-      .x(d => x(d.Occured))
-      .y(d => y(d["Non-Domestic"]))
-      .curve(d3.curveMonotoneX);
+// Define the line functions
+const lineNonDomestic = d3.line()
+.x(d => x(d.Occured))
+.y(d => y(d["Non-Domestic"]))
+.curve(d3.curveMonotoneX);
 
-  const lineDomestic = d3.line()
-      .x(d => x(d.Occured))
-      .y(d => y(d["Domestic"]))
-      .curve(d3.curveMonotoneX);
+const lineDomestic = d3.line()
+.x(d => x(d.Occured))
+.y(d => y(d["Domestic"]))
+.curve(d3.curveMonotoneX);
 
-  function renderChart(dataType, chartId, lineClass) {
+const lineNonDomesticArrestPerc = d3.line()
+.x(d => x(d.Occured))
+.y(d => y(d["Non-DomesticArrestPerc"]))
+.curve(d3.curveMonotoneX);
+
+const lineDomesticArrestPerc = d3.line()
+.x(d => x(d.Occured))
+.y(d => y(d["DomesticArrestPerc"]))
+.curve(d3.curveMonotoneX);
+
+  function renderChart(dataType, chartId, lineClass, isPercentage = false) {
     // Remove any existing SVG
     d3.select(chartId).select("svg").remove();
 
@@ -77,7 +111,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     y.domain([0, d3.max(data, d => d[dataType])]);
 
     // Define the line based on the data type
-    const line = dataType === "Non-Domestic" ? lineNonDomestic : lineDomestic;
+    const line = dataType.includes("ArrestPerc") ? (dataType === "Non-DomesticArrestPerc" ? lineNonDomesticArrestPerc : lineDomesticArrestPerc) : (dataType === "Non-Domestic" ? lineNonDomestic : lineDomestic);
 
     // Add the valueline path.
     const path = svg.append("path")
@@ -97,11 +131,11 @@ document.addEventListener("DOMContentLoaded", async function() {
       .on("end", function() {
         // Add rectangle and annotation after animation completes
         if (dataType === "Non-Domestic") {
-          addRectangleNonDomestic(svg, parseDate("20240101"), parseDate("20240331"), height);
-          addAnnotationNonDomestic(svg, lineNonDomestic, parseDate("202401"), "Increased non-domestic crimes in Q1 2024");
+          addRectangle(svg, parseDate("20240101"), parseDate("20240331"), height, x, "Non-Domestic");
+          addAnnotation(svg, parseDate("202401"), "Increased non-domestic crimes in Q1 2024", x, y, "Non-Domestic");
         } else if (dataType === "Domestic") {
-          addRectangleDomestic(svg, parseDate("20230111"), parseDate("20240131"), height);
-          addAnnotationDomestic(svg, lineDomestic, parseDate("202311"), "Domestic crimes low in Nov 2023");
+          addRectangle(svg, parseDate("20230111"), parseDate("20240131"), height, x, "Domestic");
+          addAnnotation(svg, parseDate("202311"), "Domestic crimes low in Nov 2023", x, y, "Domestic");
         }
       });
 
@@ -123,54 +157,42 @@ document.addEventListener("DOMContentLoaded", async function() {
         .attr("y", -15)
         .attr("width", 20)
         .attr("height", 20)
-        .attr("fill", dataType === "Non-Domestic" ? "#003366" : "rgb(48, 183, 183)");
+      //   .attr("fill", dataType === "Non-Domestic" ? "#003366" : "rgb(10, 126, 124)");
+        .attr("fill", dataType.includes("ArrestPerc") ? (dataType === "Non-DomesticArrestPerc" ? "#FF5733" : "#C70039") : (dataType === "Non-Domestic" ? "#003366" : "rgb(10, 126, 124)"));
 
     legendGroup.append("text")
         .attr("x", -90)
         .attr("y", 2)
         .attr("class", "legend")
         .style("text-anchor", "start")
-        .text(dataType === "Non-Domestic" ? "Non-Domestic Crimes" : "Domestic Crimes");
+      //   .text(dataType === "Non-Domestic" ? "Non-Domestic Crimes" : "Domestic Crimes");
+        .text(dataType.includes("ArrestPerc") ? (dataType === "Non-DomesticArrestPerc" ? "Non-Domestic Arrest %" : "Domestic Arrest %") : (dataType === "Non-Domestic" ? "Non-Domestic Crimes" : "Domestic Crimes"));
   }
 
-  function addAnnotationNonDomestic(svg, lineFunction, annotationDate, annotationText) {
+
+  function addAnnotation(svg, annotationDate, annotationText, x, y, dataType) {
     const bisectDate = d3.bisector(d => d.Occured).left;
     const annotationData = data[bisectDate(data, annotationDate)];
     const xValue = x(annotationData.Occured);
-    const yValue = y(annotationData["Non-Domestic"]);
+    const yValue = y(annotationData[dataType]);
 
     svg.append("text")
-        .attr("x", xValue + 80)
-        .attr("y", yValue + 70)
+        .attr("x", xValue + (dataType === "Non-Domestic" ? 80 : 50))
+        .attr("y", yValue + (dataType === "Non-Domestic" ? 70 : 60))
         .attr("dy", -10) // Adjust as needed
         .attr("text-anchor", "middle")
         .attr("class", "annotation-text")
         .text(annotationText);
   }
 
-  function addAnnotationDomestic(svg, lineFunction, annotationDate, annotationText) {
-    const bisectDate = d3.bisector(d => d.Occured).left;
-    const annotationData = data[bisectDate(data, annotationDate)];
-    const xValue = x(annotationData.Occured);
-    const yValue = y(annotationData["Domestic"]);
-
-    svg.append("text")
-        .attr("x", xValue+50)
-        .attr("y", yValue+60)
-        .attr("dy", -10) // Adjust as needed
-        .attr("text-anchor", "middle")
-        .attr("class", "annotation-text")
-        .text(annotationText);
-  }
-
-  function addRectangleNonDomestic(svg, startDate, endDate, chartHeight) {
+  function addRectangle(svg, startDate, endDate, chartHeight, x, dataType) {
     const xStart = x(startDate);
     const xEnd = x(endDate);
 
     svg.append("rect")
-        .attr("x", 450)
-        .attr("y", -10)
-        .attr("width", 220)
+        .attr("x", dataType === "Non-Domestic" ? 450 : 290)
+        .attr("y", dataType === "Non-Domestic" ? -10 : 60)
+        .attr("width", dataType === "Non-Domestic" ? 220 : 60)
         .attr("height", 40)
         .attr("fill", "none")
         .attr("stroke", "red")
@@ -178,18 +200,104 @@ document.addEventListener("DOMContentLoaded", async function() {
         .attr("stroke-dasharray", "4,4"); // This makes the line dotted
   }
 
-  function addRectangleDomestic(svg, startDate, endDate, chartHeight) {
-    const xStart = x(startDate);
-    const xEnd = x(endDate);
-
-    svg.append("rect")
-        .attr("x", 290)
-        .attr("y", 60)
-        .attr("width", 60)
-        .attr("height", 40)
-        .attr("fill", "none")
-        .attr("stroke", "red")
-        .attr("stroke-width", 2)
-        .attr("stroke-dasharray", "4,4"); // This makes the line dotted
+  function renderDualLineChart(chartId) {
+      d3.select(chartId).select("svg").remove();
+  
+      const svg = d3.select(chartId).append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  
+      x.domain(d3.extent(data, d => d.Occured));
+      y.domain([0, 20]); // Set y domain from 0 to 20 for percentages
+      
+      console.log("Domains set:", x.domain(), y.domain());
+  
+      // Update line functions to use percentage fields
+      const lineNonDomesticArrestPerc = d3.line()
+          .x(d => x(d.Occured))
+          .y(d => y(d["Non-DomesticArrestPerc"]))
+          .curve(d3.curveMonotoneX);
+  
+      const lineDomesticArrestPerc = d3.line()
+          .x(d => x(d.Occured))
+          .y(d => y(d["DomesticArrestPerc"]))
+          .curve(d3.curveMonotoneX);
+  
+      const pathNonDomestic = svg.append("path")
+          .data([data])
+          .attr("class", "line line-non-domestic-arrest-perc")
+          .attr("d", lineNonDomesticArrestPerc)
+          .attr("stroke", "#003366")
+          .attr("fill", "none");
+  
+      const pathDomestic = svg.append("path")
+          .data([data])
+          .attr("class", "line line-domestic-arrest-perc")
+          .attr("d", lineDomesticArrestPerc)
+          .attr("stroke", "rgb(10, 126, 124)")
+          .attr("fill", "none");
+  
+      const totalLengthNonDomestic = pathNonDomestic.node().getTotalLength();
+      const totalLengthDomestic = pathDomestic.node().getTotalLength();
+      
+      console.log("Paths set:", totalLengthNonDomestic, totalLengthDomestic);
+  
+      pathNonDomestic
+          .attr("stroke-dasharray", `${totalLengthNonDomestic} ${totalLengthNonDomestic}`)
+          .attr("stroke-dashoffset", totalLengthNonDomestic)
+          .transition()
+          .duration(1000)
+          .ease(d3.easeLinear)
+          .attr("stroke-dashoffset", 0);
+  
+      pathDomestic
+          .attr("stroke-dasharray", `${totalLengthDomestic} ${totalLengthDomestic}`)
+          .attr("stroke-dashoffset", totalLengthDomestic)
+          .transition()
+          .duration(1000)
+          .ease(d3.easeLinear)
+          .attr("stroke-dashoffset", 0);
+  
+      svg.append("g")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.axisBottom(x));
+  
+      svg.append("g")
+          .call(d3.axisLeft(y)
+              .ticks(10)
+              .tickFormat(d => d.toFixed(1) + "%")); // Add percentage sign to y-axis labels with one decimal place
+  
+      const legendGroup = svg.append("g")
+          .attr("transform", "translate(" + (width - 80) + "," + (height - 20) + ")");
+  
+      legendGroup.append("rect")
+          .attr("x", -130)
+          .attr("y", -15)
+          .attr("width", 20)
+          .attr("height", 20)
+          .attr("fill", "#003366");
+  
+      legendGroup.append("text")
+          .attr("x", -90)
+          .attr("y", 2)
+          .attr("class", "legend")
+          .style("text-anchor", "start")
+          .text("Non-Domestic Arrest %");
+  
+      legendGroup.append("rect")
+          .attr("x", -130)
+          .attr("y", 5)
+          .attr("width", 20)
+          .attr("height", 20)
+          .attr("fill", "rgb(10, 126, 124)");
+  
+      legendGroup.append("text")
+          .attr("x", -90)
+          .attr("y", 22)
+          .attr("class", "legend")
+          .style("text-anchor", "start")
+          .text("Domestic Arrest %");
   }
 });
