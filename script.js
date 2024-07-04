@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         renderChart("Domestic", "#chart4", "line-domestic");
     });
   
-    const data = await d3.csv("data/TrendsbyDomestic1.csv");
+    const data = await d3.csv("data/TrendsbyDomestic.csv");
   
   
   

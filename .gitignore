@@ -161,3 +161,4 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 data/Crimes_-_One_year_prior_to_present.xlsx
+data/TrendsbyDomestic2.csv
