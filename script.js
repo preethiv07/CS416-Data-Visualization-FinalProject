@@ -43,8 +43,8 @@ document.addEventListener("DOMContentLoaded", async function() {
   
     prevArrowPage5.addEventListener("click", () => {
         page5.classList.remove("active");
-        page4.classList.add("active");
-        renderChart("Domestic", "#chart4", "line-domestic");
+        page1.classList.add("active");
+        // renderChart("Domestic", "#chart4", "line-domestic");
     });
   
     const data = await d3.csv("data/TrendsbyDomestic.csv");
