@@ -20,3 +20,10 @@ Identify the arrest % prevalent crime types through our interactive narrative da
 
 https://catalog.data.gov/dataset/crimes-one-year-prior-to-present
 
+---
+# Visual Structure
+how is the data presented in a way that makes sense to the user almost immediately. 
+### Highlight
+ how to highlight the portion to draw user's attention to the important information displayed in each scene.
+### Transition and traversing user without disruption
+  In addition to that, to make sure that the viewer understands about how to navigate between the scenes and how to understand the linkage of data between all the scenes while transitioning among them.

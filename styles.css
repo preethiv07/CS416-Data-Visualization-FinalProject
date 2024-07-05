@@ -152,9 +152,20 @@ button:active,
 #container a,
 .links-section a,
 .page a {
-  color: #f4f4f4 !important; 
+  color: #d6cdcd !important; 
   text-decoration: none !important; /* Removes the underline */
   transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transition for hover effects */
+  text-align: center;
+}
+
+.data-text {
+  color: #e9dede;
+}
+
+
+.link-text {
+  align-items: center;
+  text-align: center;
 }
 
 #container a:hover,
