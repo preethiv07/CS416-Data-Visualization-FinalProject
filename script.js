@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     const nextArrowPage1 = document.getElementById("nextArrowPage1");
     const nextArrowPage2 = document.getElementById("nextArrowPage2");
     const nextArrowPage3 = document.getElementById("nextArrowPage3");
-    const prevArrowPage4 = document.getElementById("prevArrowPage4");
+    // const prevArrowPage4 = document.getElementById("prevArrowPage4");
     const nextArrowPage4 = document.getElementById("nextArrowPage4");
     const prevArrowPage5 = document.getElementById("prevArrowPage5");
   
@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", async function() {
       renderChart("Domestic", "#chart4", "line-domestic");
     });
   
-    prevArrowPage4.addEventListener("click", () => {
-      page4.classList.remove("active");
-      page3.classList.add("active");
-      renderChart("Non-Domestic", "#chart3", "line-non-domestic"); // Re-render Page 3 chart
-    });
+    // prevArrowPage4.addEventListener("click", () => {
+    //   page4.classList.remove("active");
+    //   page3.classList.add("active");
+    //   renderChart("Non-Domestic", "#chart3", "line-non-domestic"); // Re-render Page 3 chart
+    // });
   
     nextArrowPage4.addEventListener("click", () => {
         page4.classList.remove("active");
@@ -148,7 +148,15 @@ document.addEventListener("DOMContentLoaded", async function() {
       svg.append("g")
           .call(d3.axisLeft(y));
 
-   
+      // Add y-axis label
+      svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left-2)
+      .attr("x", 0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Number of crime indidents")
+      .style("font-size", "10px");
   
       // Add legend with color indicator
       const legendGroup = svg.append("g")
@@ -267,7 +275,20 @@ document.addEventListener("DOMContentLoaded", async function() {
         svg.append("g")
             .call(d3.axisLeft(y)
                 .ticks(10)
-                .tickFormat(d => d.toFixed(1) + "%"));
+                .tickFormat(d => Math.round(d) + "%"));
+
+         // Add y-axis label
+         svg.append("text")
+         .attr("transform", "rotate(-90)")
+         .attr("y", 0 - margin.left-2)
+         .attr("x", 0 - (height / 2))
+         .attr("dy", "1em")
+         .style("text-anchor", "middle")
+         .text("% arrests")
+         .style("font-size", "10px");
+         ;
+
+         
      // Add legend
             const legendGroup = svg.append("g")
                 .attr("transform", "translate(" + (width - 80) + "," + (height - 20) + ")");

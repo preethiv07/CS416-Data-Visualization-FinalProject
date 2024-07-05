@@ -3,7 +3,8 @@
 ## Title: Chicago Crime Analysis Dashboard: Trends and Insights
 
 ## Objective
-"Explore Chicago's crime trends over the past year with monthly breakdown of domestic and non-domestic incidents. Identify the most prevalent crime types through our interactive narrative dashboard, designed to provide comprehensive insights for informed decision-making."
+"Explore Chicago's crime trends over the past year with monthly breakdown of domestic and non-domestic incidents. 
+Identify the arrest % prevalent crime types through our interactive narrative dashboard, designed to provide comprehensive insights for informed decision-making."
 
 ***Created by Preethi Venkatesan for UIUC CS 416 data Visualization Final Project***
 
