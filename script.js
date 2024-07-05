@@ -147,6 +147,8 @@ document.addEventListener("DOMContentLoaded", async function() {
       // Add the Y Axis
       svg.append("g")
           .call(d3.axisLeft(y));
+
+   
   
       // Add legend with color indicator
       const legendGroup = svg.append("g")

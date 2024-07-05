@@ -19,24 +19,3 @@
 
 https://catalog.data.gov/dataset/crimes-one-year-prior-to-present
 
-
----
-
-# Ideas
-
-1. LA Crime data
-https://catalog.data.gov/dataset/crime-data-from-2020-to-present/resource/5eb6507e-fa82-4595-a604-023f8a326099
-
-2. Chicaago Crime data
- https://catalog.data.gov/dataset/crimes-2001-to-present
-
-
-URL: https://data.cityofchicago.org/api/views/ijzp-q8t2/rows.csv?accessType=DOWNLOAD
-
-
-1. historic landmarks
-2. https://catalog.data.gov/dataset/national-register-of-historic-places-kml/resource/84f4883e-51ae-4fd3-a3db-709951d4d948
-
-3. reent chicago crime
-4. https://catalog.data.gov/dataset/crimes-one-year-prior-to-present/resource/e3a0a89d-cab5-4280-b6a5-20a1781139c3
-5. 
