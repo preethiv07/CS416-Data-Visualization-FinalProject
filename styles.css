@@ -152,14 +152,15 @@ button:active,
 #container a,
 .links-section a,
 .page a {
-  color: #d6cdcd !important; 
-  text-decoration: none !important; /* Removes the underline */
+  color: #5b66b3 !important; 
+  text-decoration: underline !important; /*  underline */
+  /* text-decoration: none !important; Removes the underline */
   transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transition for hover effects */
   text-align: center;
 }
 
 .data-text {
-  color: #e9dede;
+  color: #666;
 }
 
 
