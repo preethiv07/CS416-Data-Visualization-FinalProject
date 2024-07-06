@@ -279,3 +279,27 @@ svg:hover .chart-highlight {
   padding: 20px;
   margin-top: 20px;
 }
+
+.chart-container {
+  position: relative;
+  width: 100%;
+}
+
+.info-icon {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  font-size: 14px;
+  color: #3c4463;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* .info-icon::before {
+  content: 'ℹ️';
+  font-size: 16px;
+} */
