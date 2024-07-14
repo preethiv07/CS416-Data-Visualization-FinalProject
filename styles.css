@@ -1,3 +1,13 @@
+.left-aligned-link {
+  display: block;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.about-section ul li {
+  color: #4e4949; /* Grey color for list items */
+}
+
 .created-by {
   margin-top: 0;
   margin-bottom: 10px;

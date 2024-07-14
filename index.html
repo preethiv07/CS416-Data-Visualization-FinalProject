@@ -19,7 +19,7 @@
             <!-- Links section -->
             <div class="links-section">
                 <!-- <h3>Messaging</h3> -->
-                <p>Using a <strong>Martini Glass Hybrid Structure:</strong> From Author-Driven Insights to Reader-Driven Exploration of Chicago's Crime Trends and Arrest Rates for Domestic vs. Non-Domestic Incidents</p>
+                <p>Using a <strong>Martini Glass Hybrid Structure:</strong> From Author-Driven Insights to Reader-Driven Exploration of Chicago's Crime Trends and Arrest Rates for Domestic and Non-Domestic Incidents</p>
                 <!-- <h4>Dataset</h4> -->
                 <p class="data-text"><Strong>Data: </Strong>Chicago crime incidents of past year obtained from Chicago Police Department's CLEAR (Citizen Law Enforcement Analysis and Reporting) system.</p>
                 <p class="link-text">
@@ -38,28 +38,97 @@
         <!-- Page 2 -->
         <div id="page2" class="page">
             <h2>About the Visualization</h2>
-            <a href="https://github.com/preethiv07/CS416-Data-Visualization-FinalProject/blob/main/Essay.pdf" target="_blank">Detailed Essay</a>  
+            <a href="https://github.com/preethiv07/CS416-Data-Visualization-FinalProject/blob/main/Essay.pdf" target="_blank" class="left-aligned-link">Detailed Essay</a>  
             <div class="about-section">
                 <hr>
                 <ul>
                     <li><strong>Messaging:</strong> 
-                        <ul>★ Chicago crime trends are on the rise in 2024 for both domestic and non-domestic incidents. 
-                            <em>(illustrated through guided charts showing the trend of each crime type in scene 1 & 2)</em>
-                        </ul>	
-                        <ul>★ Despite non-domestic crimes being four times more frequent compared to domestic crimes, 
-                            the arrest percentage is higher for domestic crimes. 
-                            (illustrated through interactive comparative chart of arrest %, 
-                            highlighting the significant disparity in arrest rates and details of demand using tooltips)
-                        </ul>
+                        <ul>
+                            <li>
+                              Chicago crime trends are on the rise in 2024 for both domestic and non-domestic incidents.
+                              <!-- <em>(illustrated through guided charts showing the trend of each crime type in scene 1 &amp; 2)</em> -->
+                            </li>
+                            <li>
+                              Despite non-domestic crimes being four times more frequent compared to domestic crimes,
+                              the arrest percentage is higher for domestic crimes.
+                              <!-- <em>
+                                (illustrated through interactive comparative chart of arrest %,
+                                highlighting the significant disparity in arrest rates and details of demand using tooltips)
+                              </em> -->
+                            </li>
+                          </ul>
                     </li>
                    
-                    <li><strong>Narrative Structure:</strong> Martini glass - where the message is delivered without allowing user exploration until the end</li>
-                    <li><strong>Scenes:</strong> In development</li>
-                    <li><strong>Annotations:</strong> In development</li>
-                    <li><strong>Parameters:</strong> In development</li>
+                    <li><strong>Narrative Structure:</strong> MARTINI GLASS HYBRID STRUCTURE
+                        <ul>
+                            <li>
+                           Share Author observed insights with readers using a streamlined message-focused, non-interactive scenes 1 & 2.
+                            </li>
+                            <li>
+                            Follow with an interactive scene (Scene 3) which will enable users to explore these observations further. 
+                            </li>
+                          </ul>
+                    
+                    </li>
+                    <li><strong>Scenes:</strong> 
+                        <ul>
+                            <li>
+                            <em>Scene 1: </em> Non-Domestic Crime Trends - Non-Interactive. 
+                            </li>
+                            <li>
+                                <em>Scene 2: </em> Domestic Crime Trends - Non-Interactive.
+                            </li>
+                            <li>
+                                <em>Scene 3: </em> Arrest rates by Domestic & Non-Domestic crimes- Interactive to enable users to explore the data.
+                            </li>
+                          </ul>
+                    </li>
+                    <li><strong>Annotations:</strong> 
+                        <ul>
+                            <li>
+                            A red dashed rectangle to highlight the range of data points central to the messaging.
+                            </li>
+                            <li>
+                            A text providing context is colored to match the red rectangle, creating a visual association. 
+                            </li>
+                          </ul>
+                    </li>
+                    <li><strong>Parameters:</strong> 
+                        <ul>
+                            <li>
+                            <em>Scene 1: </em> Crime type | State = Non-domestic | Function =renderChart().
+                            </li>
+                            <li>
+                            <em>Scene 2: </em> Crime type | State = Domestic | Function =renderChart().
+                            </li>
+                          </ul>
+                    </li>
                     <li><strong>Triggers:</strong> In development</li>
-                    <li><strong>Messaging:</strong> In development</li>
-                    <li><strong>Transition:</strong> In development</li>
+                    <ul>
+                        <li>
+                        <em>Scene 1,2: </em> Animation will be triggered automatically when the scene / slide is displayed.
+                        </li>
+                        <li>
+                        <em>Scene 3: </em> Selection of Radio button change states (Domestic, Non-Domestic or both) triggers the chart to show the line chart corresponding to the parameter selected.
+                        </li>
+                      </ul>
+                    <li><strong>Transition:</strong> 
+                        <ul>
+                            <li>
+                            <em>Scene 1,2: </em> Animation will be triggered after the scene is selected and annotations will appear after the transition is completed.
+                            </li>
+                            <li>
+                            <em>Scene 3: </em> Animation will be triggered after the scene is selected.
+                            </li>
+                          </ul>
+                    </li>
+                    <li><strong>Accordance:</strong> 
+                        <ul>
+                            <li>
+                            <em> Scene 3: </em>  Information Marker is added to the scene to cue the reader to hover over for tooltip.
+                            </li>
+                          </ul>
+                        </li>
                 </ul>
                 <hr>
             </div>
