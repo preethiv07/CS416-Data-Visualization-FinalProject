@@ -179,6 +179,14 @@ button:active,
   text-align: center;
 }
 
+.ref {
+  align-items: center;
+  /* text-align: center; */
+  font-size: 10px;
+  color: #947d70;
+  
+}
+
 #container a:hover,
 .links-section a:hover,
 .page a:hover {
